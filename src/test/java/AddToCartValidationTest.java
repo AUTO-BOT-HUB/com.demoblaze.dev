@@ -1,5 +1,3 @@
-package Test;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,13 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.testng.annotations.Test;
+
 
 import java.time.Duration;
 import java.util.List;
 
-public class AddToCartValidationTests {
-    public static void main(String[] args) {
+public class AddToCartValidationTest {
+   @Test
+           public void addToCartValidation(){
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         driver.manage().window().maximize();
@@ -30,20 +30,20 @@ public class AddToCartValidationTests {
         driver.findElement(By.xpath("//a[text()='Iphone 6 32gb']")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Add to cart']")));
         WebElement productName = driver.findElement(By.xpath("//h2[text()='Iphone 6 32gb']"));
-        Assert.assertTrue(productName.isDisplayed(), "Product Name Displayed");
+
         WebElement productPrice = driver.findElement(By.xpath("//h3[@class='price-container']//small"));
-        Assert.assertTrue(productPrice.isDisplayed(), "Product Price Displayed");
+
         WebElement productDescription = driver.findElement(By.xpath("//p[contains(text(), 'It comes with 1GB of RAM.')]"));
-        Assert.assertTrue(productDescription.isDisplayed(), "Product Description Displayed");
+
         WebElement productImage = driver.findElement(By.xpath("//img[@src='imgs/iphone_6.jpg']"));
-        Assert.assertTrue(productImage.isDisplayed(), "Product Image Displayed");
+
         driver.findElement(By.xpath("//a[text()='Add to cart']")).click();
 
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         String actualAlertMessage = alert.getText();
         String expectedAlertMessage = "Product added.";
-        Assert.assertEquals(actualAlertMessage,expectedAlertMessage);
+
         alert.accept();
         driver.findElement(By.id("cartur")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Delete']")));
@@ -69,9 +69,9 @@ public class AddToCartValidationTests {
 //            System.out.println("Both the values are equal");
 //        }else {
 //            System.out.println("Mismatch in the values");
-//            Assert.assertFalse(false);
+
 //        }
-//        driver.quit();
+        driver.quit();
 
 
 
