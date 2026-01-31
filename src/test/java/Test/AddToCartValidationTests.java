@@ -1,4 +1,4 @@
-package RoughTest;
+package Test;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,7 +12,7 @@ import org.testng.Assert;
 import java.time.Duration;
 import java.util.List;
 
-public class AddToCartValidationTest {
+public class AddToCartValidationTests {
     public static void main(String[] args) {
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
